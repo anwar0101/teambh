@@ -86,11 +86,11 @@
                     </div>
                 </div>
 
-                <div class="form-group col-md-12 col-sm-12" id="loading" hidden="hidden">
+                {{-- <div class="form-group col-md-12 col-sm-12" id="loading" hidden="hidden">
                     <h1 class="text-center"><i class="fa fa-spinner fa-spin fa-4x"></i></h1>
-                </div>
+                </div> --}}
 
-                <div class="col-md-12 col-sm-12 form-group" id="extra_fields" style="padding:0px">
+                <div class="col-md-12 col-sm-12" id="extra_fields" style="">
 
                 </div>
 
@@ -110,6 +110,11 @@
 @endsection
 
 @push('scripts')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://formbuilder.online/assets/js/form-builder.min.js"></script>
+    <script src="{{ asset('js/form-render.min.js') }}" charset="utf-8"></script>
+
     <script type="text/javascript">
         var cats = {
             @foreach ($category as $cat)
@@ -149,11 +154,11 @@
               $("#sub_category_id").change();
             });
 
-            $('#loading').bind('ajaxStart', function(){
-                $(this).show();
-            }).bind('ajaxStop', function(){
-                $(this).hide();
-            });
+            // $('#loading').bind('ajaxStart', function(){
+            //     $(this).show();
+            // }).bind('ajaxStop', function(){
+            //     $(this).hide();
+            // });
 
             $(document).on('change','#category_id',function(){
                 var subcats = cats[this.value];
@@ -175,11 +180,20 @@
 
             $(document).on('change','#sub_category_id',function(){
                 $("#extra_fields").empty();
+                var id = (this.value) ? this.value : "-1";
                 $.ajax({
-                      url: '/extra_fields/' + this.value,
+                      url: '/extra_fields/' + id,
                       success: function(html){
-                          console.log(html);
-                        $('#extra_fields').append(html);
+                          // console.log(html);
+                          var data = JSON.parse(html);
+                          
+                          var fbRender = document.getElementById('extra_fields');
+
+                          var formRenderOpts = {
+                              formData: data
+                          };
+
+                          $(fbRender).formRender(formRenderOpts);
                       }
                 });
             });

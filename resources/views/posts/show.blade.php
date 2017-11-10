@@ -27,7 +27,7 @@
             <div class="carousel-inner">
 
               <div class="item active">
-                <img class="img-responsive" src="{{ asset(str_replace_last('public', 'storage', $post->photo1))}}" alt="photo 1">
+                <img class="img-responsive" src="{{ Voyager::image($post->photo1) }}" alt="photo 1">
                 <div class="carousel-caption">
                   <h3> Koridbiki.com </h3>
                 </div>
@@ -35,7 +35,7 @@
 
               @if ($post->photo2)
                   <div class="item">
-                    <img class="img-responsive" src="{{ asset(str_replace_last('public', 'storage', $post->photo2))}}" alt="photo 2">
+                    <img class="img-responsive" src="{{ Voyager::image($post->photo2) }}" alt="photo 2">
                     <div class="carousel-caption">
                       <h3> Koridbiki.com </h3>
                     </div>
@@ -44,7 +44,7 @@
 
               @if ($post->photo3)
                   <div class="item">
-                    <img class="img-responsive" src="{{ asset(str_replace_last('public', 'storage', $post->photo3))}}" alt="photo 3">
+                    <img class="img-responsive" src="{{ Voyager::image($post->photo3) }}" alt="photo 3">
                     <div class="carousel-caption">
                       <h3> Koridbiki.com </h3>
                     </div>
@@ -53,7 +53,7 @@
 
               @if ($post->photo4)
                   <div class="item">
-                    <img class="img-responsive" src="{{ asset(str_replace_last('public', 'storage', $post->photo4))}}" alt="photo 4">
+                    <img class="img-responsive" src="{{ Voyager::image($post->photo4) }}" alt="photo 4">
                     <div class="carousel-caption">
                       <h3> Koridbiki.com </h3>
                     </div>

@@ -8,6 +8,15 @@
                 <div class="panel-heading">Login</div>
 
                 <div class="panel-body">
+                    <div class="col-md-8 col-md-offset-4 col-sm-12">
+                        <div class="col-md-10 col-md-offset-1">
+                          <a href="{{url('/redirect')}}"> <img src="https://scontent.fdac6-1.fna.fbcdn.net/v/t39.2365-6/17639236_1785253958471956_282550797298827264_n.png?_nc_eui2=v1%3AAeH2l1jsCj1cNRYZL2QVYsQOlkc1dRxo4XV9tjOZNtQbesnDP7K6YCHYFlGb5DxAoHnBEcp77T2W8Y0zu-_RjEVj5y4PDZ5ib7KzmIdsadmk-w&oh=73a6cd2f7e54d64c659462f9174df2a4&oe=5A6272EA" alt="" style="width: 200px"> </a>
+                          {{-- <a href="{{url('/redirect')}}" class="btn btn-danger">Login with Google</a> --}}
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="text-center">OR</h3>
+                        </div>
+                    </div>
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
@@ -61,14 +70,6 @@
                             </div>
                         </div>
 
-                        <p style="margin-left:265px">OR</p>
-                        <br />
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                              <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
-                            </div>
-                        </div>
-                        
                     </form>
                 </div>
             </div>

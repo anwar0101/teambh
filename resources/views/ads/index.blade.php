@@ -155,7 +155,7 @@
                     <div class="row media">
                       <div class="col-md-3 col-sm-4">
                         <div class="media-left">
-                          <img class="img-responsive" src="{{ asset(str_replace_last('public', 'storage', $post->photo1))}}" alt="{{ $post->title }}">
+                          <img class="img-responsive" src="{{ Voyager::image($post->photo1) }}" alt="{{ $post->title }}">
                         </div>
                       </div>
                       <div class="col-md-7 col-sm-8">

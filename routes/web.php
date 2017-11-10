@@ -3,6 +3,10 @@
 use App\Divition;
 use App\Category;
 
+use Illuminate\Http\Request;
+
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,37 +67,20 @@ Route::group(['prefix' => 'admin'], function () {
 //ajax request
 Route::get('/extra_fields/{id}', function($id)
 {
-    $extra = json_decode(\App\SubCategory::find($id)->extra_field->fields);
-    $group = "";
-
-    foreach ($extra as $key => $row) {
-        if(isset($row->type)){
-            if($row->type == "dropdown"){
-                $input = "<select name=\"extra_values[$key]\" class=\"form-control\">";
-                foreach ($row->options as $dropkey => $value) {
-                    $input = $input . "<option value=\"$dropkey\">$value</option>";
-                }
-                $input = $input . "</select>";
-            } else if($row->type == "radio"){
-                $input = '';
-                foreach ($row->options as $radiokey => $value) {
-                    $checked = ($row->default == $radiokey) ? "checked" :"";
-                    $input = $input . "<label class=\"radio-inline\"><input type=\"radio\" $checked name=\"extra_values[$key]\" value=\"$value\">$value</label>";
-                }
-            } else if($row->type == "text") {
-                $input = "<input type=\"text\" name=\"extra_values[$key]\" placeholder=\"$key\" class=\"form-control\">";
-            } else if($row->type == "number") {
-                $input = "<input type=\"number\" name=\"extra_values[$key]\" placeholder=\"$key\" class=\"form-control\">";
-            }
-
-            $group = $group . '<div class="form-group col-md-12 col-sm-12">';
-            if ($row->type == "radio") {
-                $radio = " : ";
+    if(isset($id)){
+        try {
+            $extras = \App\SubCategory::findOrFail($id)->extra_field;
+            if(count($extras) > 0){
+                $extras = $extras->fields;
             } else {
-                $radio = "";
+                return '[]';
             }
-            $group = $group . "<label for=\"$key\">$key". $radio ."</label> " . $input . '</div>';
+        } catch (ModelNotFoundException $e) {
+            return '[]';
         }
+    } else {
+        return '[]';
     }
-    return $group;
+
+    return response()->json($extras);
 });

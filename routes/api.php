@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 
-use App\SubCategory;
+use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\PassportController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,6 +16,17 @@ use App\SubCategory;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/login', 'PassportController@login');
+Route::post('/register', 'PassportController@register');
+
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('/user', function(Request $request)
+    {
+        return response()->json(['success' => Auth::user()], 200);
+    });
+});
+Route::get('/ads', function()
+{
+    $posts = \App\Post::latest()->paginate(3);
+    return response()->json($posts, 200);
 });

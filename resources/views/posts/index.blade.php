@@ -3,7 +3,9 @@
 @section('content')
   <div class="container">
     <div class="content-bg-color">
-      <h3 class="text-center"> Welcome {{ Auth::user()->name }}, Let's post an ad. Choose any option below:</h3> <hr>
+      <h3 class="text-center"> Welcome @if (!Auth::guest())
+          {{ Auth::user()->name }}
+      @endif! Let's post an ad. Choose any option below:</h3> <hr>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="row">
@@ -44,7 +46,7 @@
             </div>
             <div class="media-body">
               <h3 class="media-heading"> Your free posting allowance </h3>
-              <a href="#"> Learn about posting ads for free on Koridbiki </a>
+              <a href="#"> Learn about posting ads for free on Koridbiki.com </a>
             </div>
           </div>
         </div>

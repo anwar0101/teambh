@@ -19,7 +19,16 @@
             <form class="" action="index.html" method="post">
                 {{ csrf_field() }}
               <div class="row">
-                <div class="col-md-6 col-md-offset-right-6">
+                  <div class="col-md-6">
+                   <div class="col-md-3">
+                       <img src="@if (strpos(Auth::user()->avatar, 'http') !== false) {{ Auth::user()->avatar }} @else {{ Voyager::image(Auth::user()->avatar) }} @endif" style="width:64px;height:64px; border-radius:50%" alt="User avatar">
+                   </div>
+                    <div class="form-group col-md-3">
+                      <label for="name"> Avatar </label>
+                      <input type="file" name="avatar">
+                    </div>
+                  </div>
+                <div class="col-md-6">
                   <div class="form-group">
                     <label for="name"> Name </label>
                     <div class="input-group">
@@ -28,6 +37,7 @@
                     </div>
                   </div>
                 </div>
+
               </div>
 
               <div class="row">

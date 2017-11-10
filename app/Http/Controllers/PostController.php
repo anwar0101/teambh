@@ -73,19 +73,19 @@ class PostController extends Controller
         $data['user_id'] = Auth::id();
 
         if ($request->hasFile('photo1')) {
-            $imgStore = Storage::putFile('public/post', $request->file('photo1'));
+            $imgStore = Storage::putFile('posts', $request->file('photo1'));
             $data['photo1'] = $imgStore;
         }
         if ($request->hasFile('photo2')) {
-            $imgStore = Storage::putFile('public/post', $request->file('photo2'));
+            $imgStore = Storage::putFile('posts', $request->file('photo2'));
             $data['photo2'] = $imgStore;
         }
         if ($request->hasFile('photo3')) {
-            $imgStore = Storage::putFile('public/post', $request->file('photo3'));
+            $imgStore = Storage::putFile('posts', $request->file('photo3'));
             $data['photo3'] = $imgStore;
         }
         if ($request->hasFile('photo4')) {
-            $imgStore = Storage::putFile('public/post', $request->file('photo4'));
+            $imgStore = Storage::putFile('posts', $request->file('photo4'));
             $data['photo4'] = $imgStore;
         }
 

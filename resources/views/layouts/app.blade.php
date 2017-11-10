@@ -31,6 +31,10 @@
             </div>
         </div>
 
+        <div class="row" >
+            
+        </div>
+
         @yield('content')
 
         @include('includes.footer')
@@ -39,7 +43,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/slide.js') }}"></script>
     <script type="text/javascript">
         $('#flash-overlay-modal').modal();
     </script>

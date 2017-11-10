@@ -4,6 +4,16 @@ body{
 body a:hover{
   text-decoration: none;
 }
+
+.required label {
+    font-weight: bold;
+}
+.required label:after {
+    color: #e32;
+    content: ' *';
+    display:inline;
+}
+
 .navbar-default{
     background-color: #43a047;
 }
