@@ -9,7 +9,7 @@
           <form class="" action="{{ route('ads.index') }}" method="get">
             <div class="input-group">
 
-              <select class="form-control" name="divition">
+              <select class="form-control" name="divition" onchange="this.form.submit()">
                 <optgroup label="Select Division">
                   <option value=""> All Divitions </option>
                   @foreach ($divitions as $divition)
@@ -30,7 +30,7 @@
           <form class="" action="{{ route('ads.index') }}" method="get">
             <div class="input-group">
 
-              <select class="form-control" name="category">
+              <select class="form-control" name="category" onchange="this.form.submit()">
                 <optgroup label="Select Category">
                   <option value=""> All Categories </option>
                   @foreach ($categories as $cat)

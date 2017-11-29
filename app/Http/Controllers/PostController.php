@@ -73,20 +73,24 @@ class PostController extends Controller
         $data['user_id'] = Auth::id();
 
         if ($request->hasFile('photo1')) {
-            $imgStore = Storage::putFile('posts', $request->file('photo1'));
+            $imgStore = Storage::putFile('public/posts', $request->file('photo1'));
             $data['photo1'] = $imgStore;
+            $data['photo1'] = str_replace('public/','',$data['photo1']);
         }
         if ($request->hasFile('photo2')) {
-            $imgStore = Storage::putFile('posts', $request->file('photo2'));
+            $imgStore = Storage::putFile('public/posts', $request->file('photo2'));
             $data['photo2'] = $imgStore;
+            $data['photo2'] = str_replace('public/','',$data['photo2']);
         }
         if ($request->hasFile('photo3')) {
-            $imgStore = Storage::putFile('posts', $request->file('photo3'));
+            $imgStore = Storage::putFile('public/posts', $request->file('photo3'));
             $data['photo3'] = $imgStore;
+            $data['photo3'] = str_replace('public/','',$data['photo3']);
         }
         if ($request->hasFile('photo4')) {
-            $imgStore = Storage::putFile('posts', $request->file('photo4'));
+            $imgStore = Storage::putFile('public/posts', $request->file('photo4'));
             $data['photo4'] = $imgStore;
+            $data['photo4'] = str_replace('public/','',$data['photo4']);
         }
 
         if($post = Post::create($data)){
@@ -107,9 +111,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $posts = Post::where('sub_category_id', $post->id)->get();
-        if(count($posts)==0){
-            $posts = $post->sub_category->category->posts();
-        }
+        // if(count($posts)==0){
+        //     $posts = $post->sub_category->category->posts();
+        // }
         return view('posts.show', compact('post', 'posts'));
     }
     /**
