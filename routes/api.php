@@ -30,3 +30,15 @@ Route::get('/ads', function()
     $posts = \App\Post::latest()->paginate(3);
     return response()->json($posts, 200);
 });
+
+Route::get('/divitions', function()
+{
+    $posts = \App\Divition::all();
+    return response()->json($posts, 200);
+});
+
+Route::get('/categories', function()
+{
+    $posts = \App\Category::all();
+    return response()->json($posts, 200);
+});
