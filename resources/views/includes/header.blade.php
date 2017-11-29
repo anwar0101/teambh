@@ -12,7 +12,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                <i class="fa fa-exchange" aria-hidden="true"></i> {{ config('app.name', 'Koridbiki.com') }}
+                <span><img src="{{ asset('img/logo.png') }}" height="50px"/></span> {{ config('app.name', 'Koridbiki.com') }}
             </a>
         </div>
 
