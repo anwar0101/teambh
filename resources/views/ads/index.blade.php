@@ -76,15 +76,15 @@
                 </h1>
               </div>
               <div id="collapse1" class="panel-collapse collapse in">
-                <form class="" action="index.html" method="post">
+                <form class="" action="{{ route('ads.index') }}" method="get">
                   <div class="panel-body">
                     <div class="input-group">
                       <span class="input-group-addon"> <i class="fa fa-sort"></i> </span>
-                      <select class="form-control" name="">
-                        <option value=""> Date: Newest on Top </option>
-                        <option value=""> Date: Oldest on Top </option>
-                        <option value=""> Price: Hight to Low </option>
-                        <option value=""> Price: Low to Hight  </option>
+                      <select class="form-control" name="sort" onchange="this.form.submit()">
+                        <option value="latest" {{ ($sortFilter=='latest')?'selected':'' }}> Date: Newest on Top </option>
+                        <option value="oldest" {{ ($sortFilter=='oldest')?'selected':'' }}> Date: Oldest on Top </option>
+                        <option value="high" {{ ($sortFilter=='high')?'selected':'' }}> Price: High to Low </option>
+                        <option value="low" {{ ($sortFilter=='low')?'selected':'' }}> Price: Low to High  </option>
                       </select>
                     </div>
                   </form>
@@ -101,12 +101,14 @@
               </div>
               <div id="collapse2" class="panel-collapse collapse in">
                 <div class="panel-body">
-                  <form class="" action="index.html" method="post">
+                  <form class="" action="{{ route('ads.index') }}" method="get">
                     <div class="input-group">
                       <span class="input-group-addon"> <i class="fa fa-user"></i> </span>
-                      <select class="form-control" name="">
-                        <option value=""> All Posters </option>
-                        <option value=""> Only Members </option>
+                      <select class="form-control" name="type" onchange="this.form.submit()">
+                        <option value="all"> All Posters </option>
+                        <option value="member" @if ($typeFilter == "member")
+                            selected
+                        @endif> Only Members </option>
                       </select>
                     </div>
                   </form>
@@ -122,7 +124,7 @@
               <div id="collapse3" class="panel-collapse collapse">
                 <div class="list-group">
                     @foreach ($categories as $cat)
-                        <a href="{{ route('ads.index') }}?category={{ $cat->id }}" class="list-group-item"> <i class="fa {{ $cat->icon }}"> </i> {{ $cat->name }}  <span class="badge"> {{ $cat->total_post }} </span> </a>
+                        <a href="{{ route('ads.index') }}?category={{ $cat->id }}" class="list-group-item" style="height:auto;"> <i class="fa {{ $cat->icon }}"> </i> {{ $cat->name }}  <span class="badge"> {{ $cat->total_post }} </span> </a>
                     @endforeach
                 </div>
               </div>
@@ -175,8 +177,13 @@
                 </div>
               </a>
           @empty
-
+              <h2 class="text-center w3-margin">No Ad found!</h2>
           @endforelse
+
+          <div>
+              {{ $posts->links() }}
+          </div>
+
         </div>
       </div>
     </div>
