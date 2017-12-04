@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\PassportController;
 use App\Http\Controllers\SocialAuthFacebookController;
+
+use App\QueryFilters\PostsFilters;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,9 +29,9 @@ Route::group(['middleware' => 'auth:api'], function() {
         return response()->json(Auth::user(), 200);
     });
 });
-Route::get('/ads', function()
+Route::get('/ads', function(PostsFilters $filters)
 {
-    $posts = \App\Post::latest()->paginate(20);
+    $posts = \App\Post::where('status',1)->filterBy($filters)->paginate(20);
     return response()->json($posts, 200);
 });
 

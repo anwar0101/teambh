@@ -23,7 +23,7 @@ class AdsController extends Controller
         $typeFilter = $request->type;
         $sortFilter = $request->sort;
 
-        $posts = Post::filterBy($filters)->paginate(10);
+        $posts = Post::where('status',1)->filterBy($filters)->paginate(10);
 
         $categories = Category::all();
         $divitions = Divition::all();
