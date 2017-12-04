@@ -16,7 +16,6 @@ class SocialFacebookAccountService
         if ($account) {
             return $account->user;
         } else {
-
             $account = new SocialFacebookAccount([
                 'provider_user_id' => $providerUser->getId(),
                 'provider' => 'facebook'
@@ -25,9 +24,8 @@ class SocialFacebookAccountService
             $user = User::whereEmail($providerUser->getEmail())->first();
 
             if (!$user) {
-
                 $user = User::create([
-                    'email' => $providerUser->getEmail(),
+                    'email' => ($providerUser->getEmail())? $providerUser->getEmail() : $providerUser->getId().'@facebook.com',
                     'name' => $providerUser->getName(),
                     'password' => md5(rand(1,10000)),
                     'avatar' => $providerUser->getAvatar()

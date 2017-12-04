@@ -31,4 +31,19 @@ class SocialAuthFacebookController extends Controller
         auth()->login($user);
         return redirect()->to('/');
     }
+
+    /**
+     * Return a callback method from facebook api login.
+     *
+     * @return callback URL from facebook
+     */
+    public function social(Request $request)
+    {
+        $user = SocialFacebookAccountService::createOrGetUser(Socialite::driver('facebook')->stateless()->userFromToken($request->fb_token));
+        if($user){
+            $success['token'] = $user->createToken("MyApp")->accessToken;
+            return response()->json($success, 200);
+        }
+        return response()->json(['error' => 'Unauthrized'], 401);
+    }
 }
