@@ -9,7 +9,7 @@ use Cerbero\QueryFilters\FiltersRecords;
 class Post extends Model
 {
     use FiltersRecords;
-    
+
     protected $fillable = [
         'user_id',
         'sub_category_id',
@@ -29,6 +29,14 @@ class Post extends Model
     protected $casts = [
         'extra_values' => 'array'
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['posted_at','div_subcategory','is_favorited'];
+
 
     public function place()
     {
@@ -53,6 +61,16 @@ class Post extends Model
     public function getIsFavoritedAttribute()
     {
         return count($this->favorites()->where('user_id', Auth::id())->get()) != 0;
+    }
+
+    public function getPostedAtAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
+    public function getDivSubcategoryAttribute()
+    {
+        return $this->place->divition->name .', '. $this->sub_category->name;
     }
 
 }
