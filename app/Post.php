@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Cerbero\QueryFilters\FiltersRecords;
 
 class Post extends Model
 {
+    use FiltersRecords;
+    
     protected $fillable = [
         'user_id',
         'sub_category_id',

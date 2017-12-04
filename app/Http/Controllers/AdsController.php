@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 use App\Divition;
+use App\QueryFilters\PostsFilters;
 
 class AdsController extends Controller
 {
@@ -14,27 +15,19 @@ class AdsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, PostsFilters $filters)
     {
         $divitionFilter = $request->divition;
         $categoryFilter = $request->category;
         $searchFilter = $request->search;
+        $typeFilter = $request->type;
+        $sortFilter = $request->sort;
 
-        if(!empty($divitionFilter) && !empty($categoryFilter)){
-            $posts = Divition::find($divitionFilter)->posts()->where('status', '1')->latest()->paginate();
-        } else if(!empty($divitionFilter)){
-            $posts = Divition::find($divitionFilter)->posts()->latest()->paginate();
-        } else if(!empty($categoryFilter)){
-            $posts = Category::find($categoryFilter)->posts()->latest()->paginate();
-        }else if(!empty($searchFilter)){
-            $posts = Post::where('title', 'like', '%' . $searchFilter . '%')->get();
-        } else {
-            $posts = Post::where('status', '1')->latest()->paginate();
-        }
+        $posts = Post::filterBy($filters)->paginate(10);
 
         $categories = Category::all();
         $divitions = Divition::all();
-        return view('ads.index', compact('posts', 'categories','divitions', 'divitionFilter', 'categoryFilter'))->with('search', $searchFilter);
+        return view('ads.index', compact('posts', 'categories','divitions', 'divitionFilter', 'categoryFilter','typeFilter','sortFilter'))->with('search', $searchFilter);
     }
 
     /**
