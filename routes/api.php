@@ -28,6 +28,11 @@ Route::group(['middleware' => 'auth:api'], function() {
     {
         return response()->json(Auth::user(), 200);
     });
+    Route::get('/my-favoirites', function()
+    {
+        $posts = Auth::user()->favorites();
+        return response()->json($posts, 200);
+    });
 });
 Route::get('/ads', function(PostsFilters $filters)
 {

@@ -35,7 +35,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $appends = ['posted_at','div_subcategory','is_favorited'];
+    protected $appends = ['posted_at','div_subcategory','is_favorited_api'];
 
 
     public function place()
@@ -61,6 +61,14 @@ class Post extends Model
     public function getIsFavoritedAttribute()
     {
         return count($this->favorites()->where('user_id', Auth::id())->get()) != 0;
+    }
+
+    public function getIsFavoritedApiAttribute()
+    {
+        if(Auth::guard('api')->user()){
+            return count($this->favorites()->where('user_id', Auth::guard('api')->user()->id())->get()) != 0;
+        }
+        return false;
     }
 
     public function getPostedAtAttribute()

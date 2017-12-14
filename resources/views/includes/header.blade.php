@@ -12,7 +12,8 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                <span><img src="{{ asset('img/logo.png') }}" height="50px"/></span> {{ config('app.name', 'Koridbiki.com') }}
+                <span><img src="{{ asset('img/logo.png') }}" height="35px"/></span>
+                 {{-- {{ config('app.name', 'Koridbiki.com') }} --}}
             </a>
         </div>
 

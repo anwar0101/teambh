@@ -149,7 +149,13 @@
         </div> <!-- Left navbar end -->
 
         <div class="col-md-7 col-sm-12 col-xs-12">
-          <p> Home <span class="fa fa-long-arrow-right"></span> All ads in Bangladesh</p>
+          <p> Home <span class="fa fa-long-arrow-right"></span> @if ($divitionFilter)
+
+          @elseif ($categoryFilter)
+
+          @else
+                All ads in Bangladesh
+          @endif</p>
           @forelse ($posts as $post)
               <a href="{{ route('post.show', $post->id) }}">
                 <div class="panel panel-default item-sty">
@@ -163,7 +169,7 @@
                       <div class="col-md-7 col-sm-8">
                         <div class="media-body">
                           <p class="media-heading"> {{ $post->title }} </p>
-                          <p class="text-muted"> <b class="label label-default"> {{ $post->user->role->display_name }} </b> &nbsp; <wbr> {{ $post->created_at->diffForHumans() }}, <wbr> {{ $post->place->name }},<wbr> {{ $post->sub_category->name }} </p>
+                          <p class="text-muted"> <b class="label label-default"> {{ ($post->user->role->name =='member')? $post->user->role->name: $post->user->name }} </b> &nbsp; <wbr> {{ $post->created_at->diffForHumans() }}, <wbr> {{ $post->place->name }},<wbr> {{ $post->sub_category->name }} </p>
                           <p> <b> Tk {{ $post->price }} </b> </p>
                         </div>
                       </div>

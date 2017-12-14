@@ -19,7 +19,7 @@
 
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="sub_category_id">Sub Category</label>
-                    <select class="form-control" name="sub_category_id" id="sub_category_id">
+                    <select class="form-control" required name="sub_category_id" id="sub_category_id">
                         @foreach ($subcat as $sub)
                             <option value="{{ $sub->id }}">{{ $sub->name }}</option>
                         @endforeach
@@ -37,7 +37,7 @@
 
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="place_id">Palce</label>
-                    <select class="form-control" name="place_id" id="place_id">
+                    <select class="form-control" required name="place_id" id="place_id">
                         @foreach ($places as $place)
                             <option value="{{ $place->id }}">{{ $place->name }}</option>
                         @endforeach
@@ -46,11 +46,11 @@
 
                 <div class="form-group col-md-12 col-sm-12">
                     <label for="title">Title</label>
-                    <input type="text" name="title" placeholder="title" class="form-control">
+                    <input type="text" required name="title" placeholder="title" class="form-control">
                 </div>
                 <div class="form-group col-md-12 col-sm-12">
                     <label for="description">Description</label>
-                    <textarea name="description" class="form-control" placeholder="Description" rows="4" cols="80"></textarea>
+                    <textarea name="description" required class="form-control" placeholder="Description" rows="4" cols="80"></textarea>
                 </div>
 
                 <div class="form-group col-md-6 col-sm-12">
@@ -78,7 +78,7 @@
                     <div class="form-group">
                         <label for="price">Price</label>
                         <div class="input-group">
-                          <input type="text" name="price" class="form-control" placeholder="Price">
+                          <input type="text" required name="price" class="form-control" placeholder="Price">
                           <label class="input-group-addon">
                             <input type="checkbox" name="negatiable" value="1"> Negatiable
                           </label>
@@ -186,7 +186,7 @@
                       success: function(html){
                           // console.log(html);
                           var data = JSON.parse(html);
-                          
+
                           var fbRender = document.getElementById('extra_fields');
 
                           var formRenderOpts = {

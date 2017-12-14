@@ -8,7 +8,7 @@
           <h3> Search by Division </h3>
           <div class="list-group">
             @foreach ($divitions as $divition)
-                <a href="{{ route('ads.index') }}" class="list-group-item"> {{ $divition->name }} </a>
+                <a href="{{ route('ads.index') }}?divition={{ $divition->id }}" class="list-group-item"> {{ $divition->name }} </a>
             @endforeach
           </div>
         </div>
