@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @if(setting('homepage.top_banner'))
+    <div class="container">
+        <img src="{{ asset(Voyager::image(setting('homepage.top_banner'))) }}" alt="Top Banner" style="width: 100%;" class="img-responsive">
+    </div>
+    @endif
   <div class="header-bg-color w3-margin-top">
     <div class="container">
       <div class="row">

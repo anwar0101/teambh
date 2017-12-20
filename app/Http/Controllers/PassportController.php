@@ -30,7 +30,8 @@ class PassportController extends Controller
         $validators = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'c_password' => 'required|same:password',
         ]);
 
         if($validators->fails()){
@@ -40,8 +41,9 @@ class PassportController extends Controller
         $inputs = $request->all();
         $inputs['password'] = bcrypt($inputs['password']);
         $user = User::create($inputs);
-        $success['access_token'] = $user->createToken('MyApp')->accessToken;
+        $success['access_token'] = $user->createToken('KoridbikiRest')->accessToken;
+        $success['name'] = $user->name;
 
-        return response()->json($success, $this->successStatus);
+        return response()->json(['success' => $success], $this->successStatus);
     }
 }

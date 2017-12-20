@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+   @if(setting('all-ads.top_banner'))
+    <div class="container">
+        <img src="{{ asset(Voyager::image(setting('all-ads.top_banner'))) }}" alt="Top Banner" style="width: 100%;" class="img-responsive">
+    </div>
+    @endif
   <div class="container">
     <div class="content-bg-color">
       <h3> {{ $post->title }} </h3>
@@ -169,4 +174,9 @@
     </div> <!-- show the similar product to user section start -->
 
   </div>
+    @if(setting('all-ads.bottom_banner'))
+    <div class="container">
+        <img src="{{ asset(Voyager::image(setting('all-ads.bottom_banner'))) }}" alt="Top Banner" style="width: 100%;" class="img-responsive">
+    </div>
+    @endif
 @endsection

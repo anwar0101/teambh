@@ -20,9 +20,6 @@
     <div id="app">
         @include('includes.header')
 
-        <div class="container">
-            <img src="{{ asset(Voyager::image(setting('ads.all_ads_top_banner'))) }}" alt="Top Banner" style="width: 100%;" class="img-responsive">
-        </div>
         <div class="row">
             <div class="container">
                 @include('flash::message')

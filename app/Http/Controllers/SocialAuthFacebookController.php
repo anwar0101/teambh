@@ -39,7 +39,11 @@ class SocialAuthFacebookController extends Controller
      */
     public function social(Request $request)
     {
-        $user = SocialFacebookAccountService::createOrGetUser(Socialite::driver('facebook')->stateless()->userFromToken($request->fb_token));
+
+        $service = new SocialFacebookAccountService();
+
+        $user = $service->createOrGetUser(Socialite::driver('facebook')->stateless()->userFromToken($request->fb_token));
+
         if($user){
             $success['token'] = $user->createToken("MyApp")->accessToken;
             return response()->json($success, 200);

@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @if(setting('all-ads.top_banner'))
+    <div class="container">
+        <img src="{{ asset(Voyager::image(setting('homepage.top_banner'))) }}" alt="Top Banner" style="width: 100%;" class="img-responsive">
+    </div>
+    @endif
   <div class="container">
     <div class="content-bg-color">
       <div class="row">
@@ -192,9 +197,16 @@
 
         </div>
         <div class="col-md-2">
-            <img src="{{ asset(Voyager::image(setting('ads.all_ads_side_banner'))) }}" width="100%" alt="">
+            @if(setting('all-ads.side_banner'))
+            <img src="{{ asset(Voyager::image(setting('all-ads.side_banner'))) }}" width="100%" alt="">
+            @endif
         </div>
       </div>
     </div>
   </div>
+  @if(setting('all-ads.bottom_banner'))
+    <div class="container">
+        <img src="{{ asset(Voyager::image(setting('all-ads.bottom_banner'))) }}" alt="Top Banner" style="width: 100%;" class="img-responsive">
+    </div>
+    @endif
 @endsection

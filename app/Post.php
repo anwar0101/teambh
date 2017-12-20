@@ -26,6 +26,10 @@ class Post extends Model
         'extra_values'
     ];
 
+    protected $hidden = [
+        'place_id','sub_category_id','user_id','user'
+    ];
+
     protected $casts = [
         'extra_values' => 'array'
     ];
@@ -35,7 +39,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $appends = ['posted_at','div_subcategory','is_favorited_api'];
+    protected $appends = ['posted_at','div_subcategory','is_favorited_api','user_role'];
 
 
     public function place()
@@ -79,6 +83,11 @@ class Post extends Model
     public function getDivSubcategoryAttribute()
     {
         return $this->place->divition->name .', '. $this->sub_category->name;
+    }
+
+    public function getUserRoleAttribute()
+    {
+        return ['id' => $this->user->id, 'name' => $this->user->name,'role' => $this->user->role->name];
     }
 
 }
