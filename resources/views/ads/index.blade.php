@@ -191,6 +191,9 @@
           </div>
 
         </div>
+        <div class="col-md-2">
+            <img src="{{ asset(Voyager::image(setting('ads.all_ads_side_banner'))) }}" width="100%" alt="">
+        </div>
       </div>
     </div>
   </div>

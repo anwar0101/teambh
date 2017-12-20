@@ -19,8 +19,8 @@ class PassportController extends Controller
     {
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
-            $success['token'] = $user->createToken("MyApp")->accessToken;
-            return response()->json(['success' => $success], $this->successStatus);
+            $success['access_token'] = $user->createToken("MyApp")->accessToken;
+            return response()->json($success, $this->successStatus);
         } else {
             return response()->json(['error' => 'Unauthrized'], 401);
         }
@@ -30,8 +30,7 @@ class PassportController extends Controller
         $validators = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
-            'c_password' => 'required|same:password',
+            'password' => 'required'
         ]);
 
         if($validators->fails()){
@@ -41,9 +40,8 @@ class PassportController extends Controller
         $inputs = $request->all();
         $inputs['password'] = bcrypt($inputs['password']);
         $user = User::create($inputs);
-        $success['token'] = $user->createToken('KoridbikiRest')->accessToken;
-        $success['name'] = $user->name;
+        $success['access_token'] = $user->createToken('MyApp')->accessToken;
 
-        return response()->json(['success' => $success], $this->successStatus);
+        return response()->json($success, $this->successStatus);
     }
 }

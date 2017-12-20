@@ -18,21 +18,15 @@
 </head>
 <body>
     <div id="app">
-
         @include('includes.header')
-        {{-- <div class="row">
-            <div class="w3-display-container w3-padding" style="height:75px;">
-                <h2 class="w3-text-red w3-display-topmiddle" style=""><i class="fa fa-wrench"></i> This site is under Construction <i class="fa fa-spinner w3-spin" style="font-size:26px;"></i></h2>
-            </div>
-        </div> --}}
+
+        <div class="container">
+            <img src="{{ asset(Voyager::image(setting('ads.all_ads_top_banner'))) }}" alt="Top Banner" style="width: 100%;" class="img-responsive">
+        </div>
         <div class="row">
             <div class="container">
                 @include('flash::message')
             </div>
-        </div>
-
-        <div class="row" >
-            
         </div>
 
         @yield('content')

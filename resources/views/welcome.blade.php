@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="header-bg-color">
+  <div class="header-bg-color w3-margin-top">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -17,7 +17,7 @@
             <div class="col-md-12">
               <h1 class="text-center text-primary"> Welcome to {{ Voyager::setting("admin.title", "Koridbiki.com")}} </h1>
               <p class="text-center">
-                  {{ Voyager::setting("home.welcome_message", "Buy and sell everything new and/or used like cars to mobile phones and computers ect or search for property,
+                  {{ Voyager::setting("homepage.welcome_message", "Buy and sell everything new and/or used like cars to mobile phones and computers ect or search for property,
                  jobs and more in Bangladesh - for free!") }}
               </p>
             </div>
